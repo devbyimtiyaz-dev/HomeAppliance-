@@ -106,6 +106,10 @@ font-size:32px;
 font-weight:700;
 }
 
+.logo img{
+    width: 150px;
+}
+
 .logo span{
 color:#ff6a00;
 }
@@ -478,25 +482,43 @@ padding-right:0;
 }
 
 .hero-title{
-font-size:36px;
+font-size:34px;
 }
 
+/* FEATURES */
 .hero-features{
 grid-template-columns:1fr;
 }
 
-.booking-card{
-margin-top:40px;
-max-width:100%;
-}
-
+/* ✅ BUTTON FIX */
 .hero-buttons{
-gap:10px;
+display:flex;
+flex-direction:column;   /* stack vertically */
+gap:12px;
 }
 
 .hero-buttons a{
-flex:1;
+width:100%;
 text-align:center;
+padding:14px;
+font-size:15px;
+border-radius:10px;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:8px;
+}
+
+/* Optional: make primary button bigger */
+.btn-call{
+font-size:16px;
+padding:15px;
+}
+
+/* FORM */
+.booking-card{
+margin-top:40px;
+max-width:100%;
 }
 
 }
