@@ -20,34 +20,43 @@ behavior:'smooth'
 
 // ACTIVE MENU ON SCROLL
 
-const sections = document.querySelectorAll("section")
-const navLinks = document.querySelectorAll(".nav-link")
+const sections = document.querySelectorAll("section");
+const navLinks = document.querySelectorAll(".nav-link");
 
-window.addEventListener("scroll", () => {
+function setActiveMenu() {
+    let current = "";
 
-let current = ""
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop - 120;
+        const sectionHeight = section.offsetHeight;
 
-sections.forEach(section => {
+        if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
+            current = section.getAttribute("id");
+        }
+    });
 
-const sectionTop = section.offsetTop - 120
+    navLinks.forEach(link => {
+        link.classList.remove("active");
+    });
 
-if(pageYOffset >= sectionTop){
-current = section.getAttribute("id")
+    // ✅ If no section detected → Home active
+    if (!current) {
+        document.querySelector('.nav-link[href="#home"]').classList.add("active");
+        return;
+    }
+
+    // ✅ Otherwise set correct active menu
+    const activeLink = document.querySelector(`.nav-link[href="#${current}"]`);
+    if (activeLink) {
+        activeLink.classList.add("active");
+    }
 }
 
-})
+// 🔥 Run on scroll
+window.addEventListener("scroll", setActiveMenu);
 
-navLinks.forEach(link => {
-
-link.classList.remove("active")
-
-if(link.getAttribute("href").includes(current)){
-link.classList.add("active")
-}
-
-})
-
-})
+// 🔥 Run on page load (important)
+window.addEventListener("load", setActiveMenu);
 
 
 
